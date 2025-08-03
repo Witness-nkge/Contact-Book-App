@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>API Key</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div>Please enter a valid API key.</div>
+        <form>
+            <input type="email" id="apiKey" name="apiKey"/>
+            <button id="submitApiKey">Submit</button>
+        </form>
+
+        
+        <script>
+
+            //path to api variable
+            let rootPath = "https://mysite.itvarsity.org/api/ContactBook/";
+
+            //find button "submit" by its id then adds a click event listener
+            //when button is clicked, the function "setApiKey" run
+            document.getElementById("submitApiKey").addEventListener('click', setApiKey);
+
+            //function setApiKey takes e as a parameter
+            //e is the event object
+            function setApiKey(e){
+
+                //e is used to stop default behavior of the submit button like form submission since the button is inside the form
+                //this will stop the page from reloading when the button is clicked
+                e.preventDefault();
+                
+
+                //gets the api key typed by the user
+                apiKey = document.getElementById("apiKey").value;
+
+                //fetch function is used to make network requests
+                //it sents a GET request to the API to check if the API is valid
+                fetch(rootPath + "controller/api-key/?apiKey=" + apiKey)
+
+                //takes the response from the API and turns it into text
+                        .then(function (response) {
+                            return response.text();
+                        })
+
+                        //this function runs after the response text is ready
+                        //data will contain whatever the API returned
+                        //data will contain the actual data that the API sent
+                        .then(function (data) {
+                            
+                            //checks whether the API is valid
+                            //1 == valid otherwise invalid
+                            if (data == "1") {
+
+                                //saves the API key in localStorage so it can be reused later
+                                localStorage.setItem("apiKey", apiKey);
+
+                                //opens the index html page on the same window
+                                window.open("index.html", "_self");
+                            } else {
+                                alert(data + "Invalid API key entered!");
+                            }
+                        })
+            }
+
+            /*
+            .then() is a function that waits for something (like fetch()) to finish successfully
+            it takes a function as a parameter that runs when the previous function ran successfully
+            */
+
+            /*
+            fetch() -> used to make network requests: for API's
+            basic structure to make GET, POST, PUT, DELETE requests.
+
+            fetch(URL, {
+                method: "GET" / "POST" / "PUT" / "DELETE",
+                headers: { ... }, //tells the server about the data you are sending (HTTTP - how browser talks to a server)
+                body: JSON.stringify(data)  // only for POST or PUT
+            })
+
+
+            headers e.g.
+
+            headers: {
+                "Content-Type": "application/json", //tells the server the type of data you are sending
+                "Authorization": "Bearer your_token_here"  //sends tokens or API key for secure API's
+            },
+
+            */
+        </script>
+    </body>
+</html>
+
+
+

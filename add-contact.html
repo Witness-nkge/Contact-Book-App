@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <br/>
+    <form id="editForm">
+        <label for="firstname">First name</label>
+        <input type="text" name="firstname" id="firstname"><br/>
+        
+        <label for="lastname">Last name</label>
+        <input type="text" name="lastname" id="lastname"><br/>
+        
+        <label for="mobile">mobile</label>
+        <input type="text" name="mobile" id="mobile"><br/>
+        
+        <label for="email">email</label>
+        <input type="text" name="email" id="email"><br/>
+        
+        <label for="avator">avator</label>
+        <input type="file" name="avator" id="avator"><br/>
+
+        <button type="submit" id="submitForm">Submit</button> 
+    </form>
+    <br/>
+    <button id="homeLink" type="button">Home</button>
+
+    <script src="config.js"></script>
+
+    <script>
+
+        document.getElementById("submitForm").addEventListener('click', submitForm);
+        document.getElementById('homeLink').addEventListener('click', homeLink);
+
+        function submitForm(e) {
+            //prevent the default behaviour of a form of reloading the page when you click the submit button
+            //this is the only function of e parameter
+            e.preventDefault();
+
+            //form data object containing all the information that the user submit 
+            const form = new FormData(document.querySelector('#editForm'));
+            //adds the api key on the form data
+            form.append('apiKey', apiKey);
+
+
+            //Accept inside headers means the type of data you want back
+            fetch(rootPath + 'controller/insert-contact/'
+                , {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json, *.*'
+                    },
+                    body: form
+                }
+            )
+            .then(response => response.text())
+            .then(function (data) {
+                if(data== "1") {
+                    alert("Contact added.");
+                    homeLink();
+                } else {
+                    alert (data);
+                    homeLink();
+                }
+            })
+        }
+
+        function homeLink() {
+            window.open("index.html", "_self");
+        }
+
+    </script>
+</body>
+</html>
