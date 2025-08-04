@@ -31,9 +31,7 @@ All data is handled dynamically via JavaScript and stored/retrieved through the 
 
 ## 📸 Preview
 
-<p align="center">
-  <img src="screenshot.png" alt="Contact List" width="300"/>
-  <img src="screenshot_02.png" alt="Edit Contact Screen" width="300" style="background-color:#000000;"/>
-</p>
+<img src="screenshot.png" alt="Contact List" />
+<img src="screenshot_02.png" alt="Edit Contact Screen" />
 
 
