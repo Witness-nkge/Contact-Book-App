@@ -33,7 +33,7 @@ All data is handled dynamically via JavaScript and stored/retrieved through the 
 
 <p align="center">
   <img src="screenshot.png" alt="Contact List" width="300"/>
-  <img src="screenshot_02.png" alt="Edit Contact Screen" width="300" style="border:3px solid #000000"/>
+  <img src="screenshot_02.png" alt="Edit Contact Screen" width="300" style="background-color:#000000;"/>
 </p>
 
 
