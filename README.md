@@ -29,6 +29,13 @@ All data is handled dynamically via JavaScript and stored/retrieved through the 
 - **CSS3** – Layout and styling
 - **JavaScript (Vanilla)** – API integration and form handling
 
+## 📁 Folder Structure
+
+Contact-Book/
+├── index.html # Main interface
+├── styles.css # CSS styles
+├── script.js # JavaScript logic and API calls
+
 ## 📸 Preview
 
 <img src="screenshot.png" alt="Contact List" />
